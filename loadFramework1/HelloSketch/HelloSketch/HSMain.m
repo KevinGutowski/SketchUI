@@ -17,12 +17,11 @@
 }
 
 - (id)loadNibFile {
-	// The myNib file must be in the bundle that defines self's class.
 	NSArray *topLevelObjects;
 	NSBundle *myBundle = [NSBundle bundleForClass:[HSMain class]];
 	if (! [myBundle loadNibNamed:@"HSPanel" owner:self topLevelObjects:&topLevelObjects])
 	{
-		NSLog(@"Warning! Could not load myNib file.\n");
+		NSLog(@"Warning! Could not load the nib file.\n");
 		return NULL;
 	} else {
 		return topLevelObjects;
