@@ -1,0 +1,24 @@
+{
+  "author" : "",
+  "commands" : [
+    {
+      "script" : "script.js",
+      "name" : "loadFramework1",
+      "handlers" : {
+        "run" : "onRun"
+      },
+      "identifier" : "com.bohemiancoding.sketch.runscriptidentifier"
+    }
+  ],
+  "menu" : {
+    "title" : "loadFramework1",
+    "items" : [
+      "com.bohemiancoding.sketch.runscriptidentifier"
+    ]
+  },
+  "identifier" : "com.example.sketch.29695b44-017d-4792-9183-28a1de6a7c6a",
+  "version" : "1.0",
+  "description" : "",
+  "authorEmail" : "",
+  "name" : "loadFramework1"
+}
