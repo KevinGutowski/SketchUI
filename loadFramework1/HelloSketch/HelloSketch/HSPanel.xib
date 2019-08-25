@@ -21,19 +21,18 @@
                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WJ6-Df-Wna">
-                        <rect key="frame" x="212" y="127" width="56" height="17"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="Hi there!" id="WMd-np-vaG">
-                            <font key="font" usesAppearanceFont="YES"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xXY-Bk-YKw">
+                        <rect key="frame" x="171" y="117" width="140" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Trigger Function" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XAX-da-Krb">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="buttonClicked:" target="-2" id="KCY-aK-3hg"/>
+                        </connections>
+                    </button>
                 </subviews>
-                <constraints>
-                    <constraint firstItem="WJ6-Df-Wna" firstAttribute="centerX" secondItem="EiT-Mj-1SZ" secondAttribute="centerX" id="Abx-Py-Jnd"/>
-                    <constraint firstItem="WJ6-Df-Wna" firstAttribute="centerY" secondItem="EiT-Mj-1SZ" secondAttribute="centerY" id="NC3-qF-wav"/>
-                </constraints>
             </view>
         </window>
     </objects>

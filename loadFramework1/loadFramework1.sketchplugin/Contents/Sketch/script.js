@@ -1,5 +1,7 @@
 let sketch = require('sketch')
 
+let fiber = require('sketch/async').createFiber()
+
 var onRun = function(context) {
     try {
         runPlugin()
@@ -15,9 +17,13 @@ var onRun = function(context) {
     }
 };
 
-
 function runPlugin() {
     let main = HSMain.alloc().init()
     sketch.UI.message(main.helloText())
-    console.log(main.loadNibFile())
+    main.loadNibFile()
+
+    main.setCallbackButtonClick((object) => {
+        console.log(object)
+        sketch.UI.message("Button Clicked")
+    })
 }
