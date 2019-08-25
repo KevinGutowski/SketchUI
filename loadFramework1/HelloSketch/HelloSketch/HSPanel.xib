@@ -8,6 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="HSMain">
             <connections>
                 <outlet property="mainPanel" destination="QvC-M9-y7g" id="OqW-NJ-nMV"/>
+                <outlet property="panel" destination="QvC-M9-y7g" id="bwd-q4-7Nh"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
@@ -34,6 +35,9 @@
                     </button>
                 </subviews>
             </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="ISg-ti-18d"/>
+            </connections>
         </window>
     </objects>
 </document>

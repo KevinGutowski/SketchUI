@@ -27,7 +27,8 @@ JSValue* callFunctionWithArguments(MOJavaScriptObject* boxedFunction, NSArray* a
 }
 
 @implementation HSMain {
-	MOJavaScriptObject *_jsCallback;
+	MOJavaScriptObject *_buttonCallback;
+	MOJavaScriptObject *_closeCallback;
 }
 
 - (NSString *)helloText {
@@ -48,16 +49,29 @@ JSValue* callFunctionWithArguments(MOJavaScriptObject* boxedFunction, NSArray* a
 }
 
 - (IBAction)buttonClicked:(id)sender {
-	NSLog(@"Button Clicked");
-	if (!_jsCallback) return;
+	if (!_buttonCallback) return;
 	
-	callFunctionWithArguments(_jsCallback, @[]);
+	callFunctionWithArguments(_buttonCallback, @[@"Hi there"]);
 }
 
 - (void)setCallbackButtonClick:(MOJavaScriptObject*)function {
-	_jsCallback = function;
+	_buttonCallback = function;
 }
 
+- (void)setCallbackForClose:(MOJavaScriptObject*)function {
+	_closeCallback = function;
+}
 
+- (void)closePanel {
+	NSLog(@"Closing from closepanel in framework");
+	[panel close];
+}
+
+- (void)windowWillClose:(NSNotification *)notification {
+	if (!_closeCallback) return;
+	
+	NSLog(@"Closing!! Inside framework");
+	callFunctionWithArguments(_closeCallback, @[notification]);
+}
 
 @end

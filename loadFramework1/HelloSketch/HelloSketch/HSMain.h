@@ -11,9 +11,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HSMain : NSObject
+@interface HSMain : NSObject <NSWindowDelegate> {
+	IBOutlet NSPanel *panel;
+}
 
 - (NSString *)helloText;
+- (void)closePanel;
 
 @end
 

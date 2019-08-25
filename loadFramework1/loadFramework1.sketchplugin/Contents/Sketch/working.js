@@ -1,26 +1,32 @@
 let sketch = require('sketch')
 var Settings = require('sketch/settings')
 
-let fiber = require('sketch/async').createFiber()
-let main
+let threadID = "com.loadFramework"
+let threadDictionary = NSThread.mainThread().threadDictionary()
 
 var onRun = function(context) {
-    if (main) {
+    if (threadDictionary[threadID]) {
+        console.log("triggered")
         closeMyPanel()
     } else {
+
         loadFramework()
         try {
-            runPlugin()
+            let tryToRunPlugin = runPlugin()
         } catch(e) {
             console.error(e)
+        }
+
+        if (tryToRunPlugin) {
+            let fiber = require('sketch/async').createFiber()
         }
     }
 }
 
 function loadFramework() {
     let bundlePath = process.cwd() + "/Contents/Resources"
+    console.log(bundlePath)
     let loadFramework = Mocha.sharedRuntime().loadFrameworkWithName_inDirectory('HelloSketch', bundlePath)
-
     if (loadFramework) {
         return true
     } else {
@@ -29,15 +35,20 @@ function loadFramework() {
 }
 
 function closeMyPanel() {
+    let main = threadDictionary[threadID]
+
     try {
+        console.log(main)
         main.closePanel()
+        threadDictionary[threadID] = null
     } catch(e) {
         console.error(e)
     }
 }
 
 function runPlugin() {
-    main = HSMain.alloc().init()
+    let main = HSMain.alloc().init()
+    threadDictionary[threadID] = main
     sketch.UI.message(main.helloText())
     main.loadNibFile()
 
@@ -49,7 +60,9 @@ function runPlugin() {
     main.setCallbackForClose((object) => {
         console.log("Closing")
         sketch.UI.message('Closing...')
-        main = null
+        threadDictionary[threadID] = null
         fiber.cleanup()
     })
+
+    return true
 }
